@@ -14,7 +14,7 @@ pipeline {
         stage('Docker build Push Image'){
             steps {
                 script {
-                    docker.withRegistry('https://033407704869.dkr.ecr.us-west-2.amazonaws.com/testrepo', 'ecr:us-west-2:aws-credentials') {
+                    docker.withRegistry('https://033407704869.dkr.ecr.us-west-2.amazonaws.com/bucketlist', 'ecr:us-west-2:aws-credentials') {
                         def customImage = docker.build("bucketlist:v${env.BUILD_NUMBER}","./")
                         customImage.push()
                         customImage.push("latest")
