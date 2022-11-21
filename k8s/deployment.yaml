@@ -23,7 +23,7 @@ spec:
         persistentVolumeClaim:
           claimName: bucketlist-storage
       containers:
-      - image: 033407704869.dkr.ecr.us-west-2.amazonaws.com/bucketlist:v4
+      - image: 033407704869.dkr.ecr.us-west-2.amazonaws.com/bucketlist:stateful
         name: bucketlist-stateful
         resources: {}
         volumeMounts:
