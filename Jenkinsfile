@@ -11,14 +11,7 @@ pipeline {
                  echo 'No unit test '
             }
         }
-        stage('Docker build'){
-            steps{
-                script {
-                  docker.build registry + ":$BUILD_NUMBER"
-                }
-            }
-        }
-        stage('Push Image'){
+        stage('Docker build Push Image'){
             steps {
                 script {
                     docker.withRegistry('https://033407704869.dkr.ecr.us-west-2.amazonaws.com/testrepo', 'ecr:us-west-2:aws-credentials') {
