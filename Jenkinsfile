@@ -17,7 +17,6 @@ pipeline {
                     docker.withRegistry('https://033407704869.dkr.ecr.us-west-2.amazonaws.com/bucketlist', 'ecr:us-west-2:aws-credentials') {
                         def customImage = docker.build("bucketlist:v${env.BUILD_NUMBER}","./")
                         customImage.push()
-                        customImage.push("latest")
                     }
                 }
             }
