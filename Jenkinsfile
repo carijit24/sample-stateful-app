@@ -1,24 +1,14 @@
 pipeline {
-    agent none
-    environment {
-      registry = "033407704869.dkr.ecr.us-west-2.amazonaws.com/testrepo"
-      registryCredential = ‘aws-credentials’
-    }
+    agent any
     stages {
         stage('Build') {
-            agent {
-                docker {
-                    image 'python:2-alpine'
-                }
-            }
             steps {
-                sh 'python -m py_compile hello.py'
-                stash(name: 'compiled-results', includes: '*.py*')
+                echo 'No Build required'
             }
         }
         stage('Unit Test'){
             steps {
-                 echo 'Empty'
+                 echo 'No unit test '
             }
         }
         stage('Docker build'){
@@ -29,8 +19,11 @@ pipeline {
         stage('Push Image'){
             steps {
                 script {
-                  docker.withRegistry( '', registryCredential ) {
-                  dockerImage.push()
+                  docker.withRegistry('https://033407704869.dkr.ecr.us-west-2.amazonaws.com/testrepo', 'ecr:us-west-2:aws-credentials') {
+                    def customImage = docker.build("bucketlist:v${env.BUILD_NUMBER}","./")
+                    customImage.push()
+                    customImage.push("latest")
+                  }
                 }
             }
         }
