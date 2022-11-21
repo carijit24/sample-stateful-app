@@ -22,8 +22,9 @@ pipeline {
             }
         }
         stage('Deploy to EKS'){
-            steps{
-                echo 'Deploy to EKS'
+            steps {
+                 sh 'cd k8s'
+                 sh 'kubectl apply -f .'
             }
         }
     }

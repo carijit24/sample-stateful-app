@@ -23,7 +23,7 @@ spec:
         persistentVolumeClaim:
           claimName: bucketlist-storage
       containers:
-      - image: ontaptom/bucketlist:0.2
+      - image: 033407704869.dkr.ecr.us-west-2.amazonaws.com/bucketlist:v4
         name: bucketlist
         resources: {}
         volumeMounts:
