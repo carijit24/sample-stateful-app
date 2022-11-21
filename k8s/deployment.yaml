@@ -3,20 +3,20 @@ kind: Deployment
 metadata:
   creationTimestamp: null
   labels:
-    app: bucketlist
-  name: bucketlist
+    app: bucketlist-stateful
+  name: bucketlist-stateful
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: bucketlist
+      app: bucketlist-stateful
   strategy: 
     type: Recreate
   template:
     metadata:
       creationTimestamp: null
       labels:
-        app: bucketlist
+        app: bucketlist-stateful
     spec:
       volumes:
       - name: bucketlist-storage
@@ -24,7 +24,7 @@ spec:
           claimName: bucketlist-storage
       containers:
       - image: 033407704869.dkr.ecr.us-west-2.amazonaws.com/bucketlist:v4
-        name: bucketlist
+        name: bucketlist-stateful
         resources: {}
         volumeMounts:
         - mountPath: "/app-storage"
