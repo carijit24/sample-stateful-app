@@ -1,33 +1,33 @@
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  creationTimestamp: null
-  labels:
-    app: bucketlist-stateful
-  name: bucketlist-stateful
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: bucketlist-stateful
-  strategy: 
-    type: Recreate
-  template:
-    metadata:
-      creationTimestamp: null
-      labels:
-        app: bucketlist-stateful
-    spec:
-      volumes:
-      - name: bucketlist-storage
-        persistentVolumeClaim:
-          claimName: bucketlist-storage
-      containers:
-      - image: 033407704869.dkr.ecr.us-west-2.amazonaws.com/bucketlist:stateful
-        name: bucketlist-stateful
-        resources: {}
-        volumeMounts:
-        - mountPath: "/app-storage"
-          name: bucketlist-storage
-status: {}
-
+#apiVersion: apps/v1
+#kind: Deployment
+#metadata:
+#  creationTimestamp: null
+#  labels:
+#    app: bucketlist-stateful
+#  name: bucketlist-stateful
+#spec:
+#  replicas: 1
+#  selector:
+#    matchLabels:
+#      app: bucketlist-stateful
+#  strategy:
+#    type: Recreate
+#  template:
+#    metadata:
+#      creationTimestamp: null
+#      labels:
+#        app: bucketlist-stateful
+#    spec:
+#      volumes:
+#      - name: bucketlist-storage
+#        persistentVolumeClaim:
+#          claimName: bucketlist-storage
+#      containers:
+#      - image: 033407704869.dkr.ecr.us-west-2.amazonaws.com/bucketlist:stateful
+#        name: bucketlist-stateful
+#        resources: {}
+#        volumeMounts:
+#        - mountPath: "/app-storage"
+#          name: bucketlist-storage
+#status: {}
+#

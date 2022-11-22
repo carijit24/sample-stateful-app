@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: bucketlist-stateful
+spec:
+  selector:
+    matchLabels:
+      app: bucketlist-stateful # has to match .spec.template.metadata.labels
+  replicas: 2 # by default is 1
+  minReadySeconds: 10 # by default is 0
+  template:
+    metadata:
+      labels:
+        app: bucketlist-stateful # has to match .spec.selector.matchLabels
+    spec:
+      terminationGracePeriodSeconds: 10
+      containers:
+        - name: bucketlist
+          image: 033407704869.dkr.ecr.us-west-2.amazonaws.com/bucketlist:stateful
+          ports:
+            - containerPort: 80
+          volumeMounts:
+            - name: bucketlist-volume
+              mountPath: "/app-storage"
+  volumeClaimTemplates:
+    - metadata:
+        name: bucketlist-volume
+      spec:
+        accessModes: [ "ReadWriteOnce" ]
+        storageClassName: "gp2"
+        resources:
+          requests:
+            storage: 1Gi
