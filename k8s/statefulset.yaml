@@ -3,6 +3,7 @@ kind: StatefulSet
 metadata:
   name: bucketlist-stateful
 spec:
+  serviceName: "bucketlist-stateful"
   selector:
     matchLabels:
       app: bucketlist-stateful # has to match .spec.template.metadata.labels
