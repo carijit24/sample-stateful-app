@@ -26,7 +26,7 @@ spec:
     - metadata:
         name: pvc
       spec:
-        accessModes: [ "ReadWriteMany" ]
+        accessModes: [ "ReadWriteOnce" ]
         storageClassName: "gp2"
         resources:
           requests:
