@@ -20,13 +20,13 @@ spec:
           ports:
             - containerPort: 80
           volumeMounts:
-            - name: bucketlist-volume
+            - name: pvc
               mountPath: "/app-storage"
   volumeClaimTemplates:
     - metadata:
-        name: bucketlist-volume
+        name: pvc
       spec:
-        accessModes: [ "ReadWriteOnce" ]
+        accessModes: [ "ReadWriteMany" ]
         storageClassName: "gp2"
         resources:
           requests:
